@@ -6,10 +6,8 @@
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css">
-        <link rel="stylesheet" href="css/MarkerCluster.css">
-        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -24,7 +22,7 @@
         <div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
         <script src="js/multi-style-layer.js"></script>
         <script src="js/leaflet-svg-shape-markers.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
@@ -34,7 +32,6 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet.markercluster.js"></script>
         <script src="data/Dimako_0.js"></script>
         <script src="data/Doume_1.js"></script>
         <script src="data/Diang_2.js"></script>
@@ -51,22 +48,17 @@
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[4.44601074106,13.4159014545],[4.75722223242,13.9657084226]]);
+        }).fitBounds([[4.5731399528,13.6727789001],[4.5828653119,13.6899603679]]);
         var hash = new L.Hash(map);
         map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        L.control.locate().addTo(map);
         var bounds_group = new L.featureGroup([]);
-        var basemap0 = L.tileLayer('http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
-            maxZoom: 28
-        });
-        basemap0.addTo(map);
         function setBounds() {
         }
         function pop_Dimako_0(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">osm_id</th>\
-                        <td>' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['osm_way_id'] !== null ? Autolinker.link(String(feature.properties['osm_way_id'])) : '') + '</td>\
@@ -78,7 +70,8 @@
                         <td colspan="2">' + (feature.properties['admin_leve'] !== null ? Autolinker.link(String(feature.properties['admin_leve'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                        <th scope="row">name</th>\
+                        <td>' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['ref_COG'] !== null ? Autolinker.link(String(feature.properties['ref_COG'])) : '') + '</td>\
@@ -115,8 +108,7 @@
         function pop_Doume_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">osm_id</th>\
-                        <td>' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['osm_way_id'] !== null ? Autolinker.link(String(feature.properties['osm_way_id'])) : '') + '</td>\
@@ -128,7 +120,8 @@
                         <td colspan="2">' + (feature.properties['admin_leve'] !== null ? Autolinker.link(String(feature.properties['admin_leve'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                        <th scope="row">name</th>\
+                        <td>' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['ref_COG'] !== null ? Autolinker.link(String(feature.properties['ref_COG'])) : '') + '</td>\
@@ -165,8 +158,7 @@
         function pop_Diang_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">osm_id</th>\
-                        <td>' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['osm_way_id'] !== null ? Autolinker.link(String(feature.properties['osm_way_id'])) : '') + '</td>\
@@ -178,7 +170,8 @@
                         <td colspan="2">' + (feature.properties['admin_leve'] !== null ? Autolinker.link(String(feature.properties['admin_leve'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                        <th scope="row">name</th>\
+                        <td>' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['ref_COG'] !== null ? Autolinker.link(String(feature.properties['ref_COG'])) : '') + '</td>\
@@ -215,8 +208,7 @@
         function pop_Mandjou_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">osm_id</th>\
-                        <td>' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['osm_way_id'] !== null ? Autolinker.link(String(feature.properties['osm_way_id'])) : '') + '</td>\
@@ -228,7 +220,8 @@
                         <td colspan="2">' + (feature.properties['admin_leve'] !== null ? Autolinker.link(String(feature.properties['admin_leve'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                        <th scope="row">name</th>\
+                        <td>' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['ref_COG'] !== null ? Autolinker.link(String(feature.properties['ref_COG'])) : '') + '</td>\
@@ -265,8 +258,7 @@
         function pop_Bertoua_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">osm_id</th>\
-                        <td>' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['osm_way_id'] !== null ? Autolinker.link(String(feature.properties['osm_way_id'])) : '') + '</td>\
@@ -278,7 +270,8 @@
                         <td colspan="2">' + (feature.properties['admin_leve'] !== null ? Autolinker.link(String(feature.properties['admin_leve'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                        <th scope="row">name</th>\
+                        <td>' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['ref_COG'] !== null ? Autolinker.link(String(feature.properties['ref_COG'])) : '') + '</td>\
@@ -315,8 +308,7 @@
         function pop_Belabo_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">osm_id</th>\
-                        <td>' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['osm_way_id'] !== null ? Autolinker.link(String(feature.properties['osm_way_id'])) : '') + '</td>\
@@ -328,7 +320,8 @@
                         <td colspan="2">' + (feature.properties['admin_leve'] !== null ? Autolinker.link(String(feature.properties['admin_leve'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                        <th scope="row">name</th>\
+                        <td>' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['ref_COG'] !== null ? Autolinker.link(String(feature.properties['ref_COG'])) : '') + '</td>\
@@ -512,8 +505,7 @@
         function pop_Hydrographie_8(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">osm_id</th>\
-                        <td>' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['waterway'] !== null ? Autolinker.link(String(feature.properties['waterway'])) : '') + '</td>\
@@ -557,21 +549,21 @@
         function pop_SitesTouristiques_9(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">lat</th>\
-                        <td>' + (feature.properties['lat'] !== null ? Autolinker.link(String(feature.properties['lat'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['lat'] !== null ? Autolinker.link(String(feature.properties['lat'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">lon</th>\
-                        <td>' + (feature.properties['lon'] !== null ? Autolinker.link(String(feature.properties['lon'])) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['lon'] !== null ? Autolinker.link(String(feature.properties['lon'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Noms</strong><br />' + (feature.properties['Noms'] !== null ? Autolinker.link(String(feature.properties['Noms'])) : '') + '</td>\
+                        <th scope="row">Noms</th>\
+                        <td>' + (feature.properties['Noms'] !== null ? Autolinker.link(String(feature.properties['Noms'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['specificit'] !== null ? Autolinker.link(String(feature.properties['specificit'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>photo</strong><br />' + (feature.properties['photo'] !== null ? '<img src="images/' + String(feature.properties['photo']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                        <th scope="row">photo</th>\
+                        <td>' + (feature.properties['photo'] !== null ? '<img src="images/' + String(feature.properties['photo']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -721,8 +713,7 @@
         function pop_Restaurant_12(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">nom</th>\
-                        <td>' + (feature.properties['nom'] !== null ? Autolinker.link(String(feature.properties['nom'])) : '') + '</td>\
+                        <td colspan="2"><strong>nom</strong><br />' + (feature.properties['nom'] !== null ? Autolinker.link(String(feature.properties['nom'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['longitude'] !== null ? Autolinker.link(String(feature.properties['longitude'])) : '') + '</td>\
@@ -737,10 +728,12 @@
                         <td colspan="2">' + (feature.properties['menu'] !== null ? Autolinker.link(String(feature.properties['menu'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['heure_ouv'] !== null ? Autolinker.link(String(feature.properties['heure_ouv'])) : '') + '</td>\
+                        <th scope="row">heure_ouv</th>\
+                        <td>' + (feature.properties['heure_ouv'] !== null ? Autolinker.link(String(feature.properties['heure_ouv'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['heure_fer'] !== null ? Autolinker.link(String(feature.properties['heure_fer'])) : '') + '</td>\
+                        <th scope="row">heure_fer</th>\
+                        <td>' + (feature.properties['heure_fer'] !== null ? Autolinker.link(String(feature.properties['heure_fer'])) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['categorie'] !== null ? Autolinker.link(String(feature.properties['categorie'])) : '') + '</td>\
@@ -775,12 +768,8 @@
                 return L.marker(latlng, style_Restaurant_12_0(feature));
             },
         });
-        var cluster_Restaurant_12 = new L.MarkerClusterGroup({showCoverageOnHover: false,
-            spiderfyDistanceMultiplier: 2});
-        cluster_Restaurant_12.addLayer(layer_Restaurant_12);
-
         bounds_group.addLayer(layer_Restaurant_12);
-        cluster_Restaurant_12.addTo(map);
+        map.addLayer(layer_Restaurant_12);
         var title = new L.Control();
         title.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info');
@@ -791,6 +780,8 @@
             this._div.innerHTML = '<h2>projet de promotion des sites touristques</h2>';
         };
         title.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Restaurant_12.png" /> Restaurant': layer_Restaurant_12,'<img src="legend/Lieudhebergement_11.png" /> Lieu d\'hebergement': layer_Lieudhebergement_11,'<img src="legend/Lieudit_10.png" /> Lieu-dit': layer_Lieudit_10,'<img src="legend/SitesTouristiques_9.png" /> Sites Touristiques': layer_SitesTouristiques_9,'<img src="legend/Hydrographie_8.png" /> Hydrographie': layer_Hydrographie_8,'<img src="legend/RouteSecondaire_7.png" /> Route Secondaire': layer_RouteSecondaire_7,'<img src="legend/Routeprincipale_6.png" /> Route principale': layer_Routeprincipale_6,'<img src="legend/Belabo_5.png" /> Belabo': layer_Belabo_5,'<img src="legend/Bertoua_4.png" /> Bertoua': layer_Bertoua_4,'<img src="legend/Mandjou_3.png" /> Mandjou': layer_Mandjou_3,'<img src="legend/Diang_2.png" /> Diang': layer_Diang_2,'<img src="legend/Doume_1.png" /> Doume': layer_Doume_1,'<img src="legend/Dimako_0.png" /> Dimako': layer_Dimako_0,},{collapsed:false}).addTo(map);
         setBounds();
         var i = 0;
         layer_Dimako_0.eachLayer(function(layer) {
